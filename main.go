@@ -32,7 +32,7 @@ func main() {
 	discord.AddHandler(func(s *discordgo.Session, m *discordgo.MessageCreate) {
 		content := m.Content
 
-		if matches, err := regexp.Match("[КкKk]\s*.*[ОоOo0]\s*.*[ТтTt]\s*.*[Ll]\s*.*[Ii]\s*.*[Nn]", []byte(content)); err == nil && matches {
+		if matches, err := regexp.Match("[КкKk][\\sa-zA-Z]*[ОоOo0][\\sa-zA-Z]*[ТтTt][\\sa-zA-Z]*[Ll][\\sa-zA-Z]*[Ii][\\sa-zA-Z]*[Nn][\\sa-zA-Z]*", []byte(content)); err == nil && matches {
 			if !m.Author.Bot {
 				if !strings.Contains(content, allowOption) {
 					err := s.ChannelMessageDelete(m.ChannelID, m.Message.ID)
